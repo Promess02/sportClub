@@ -1,106 +1,55 @@
 package mikolajM.project.sportClub.model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
-import mikolajM.project.sportClub.enums.Sport;
+import lombok.Setter;
 
-import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-@Entity
-@Table
 @Getter
+@Setter
+@Entity
 public class Activity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String name;
-  private Date date;
-  private Time time;
-  private long minutes;
-  private String description;
-  @Enumerated(EnumType.STRING)
-  private Sport sport;
-  private long currentMembers;
-  private long memberLimit;
+    @Column(name = "name", nullable = false)
+    private String name;
 
- @ManyToOne
- @JoinColumn(name = "LocationId")
-  private Location location;
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
-  @ManyToOne
-  @JoinColumn(name = "trainerId")
-  private Trainer trainer;
+    @Column(name = "time", nullable = false)
+    private LocalTime time;
 
-  @OneToOne(mappedBy = "teamId")
-  private Team teamId;
+    @Column(name = "minutes", nullable = false)
+    private Integer minutes;
 
-  public Activity() {
-  }
+    @Column(name = "description")
+    private String description;
 
-  public Activity(long id, String name, Date date, Time time, long minutes, String description,
-                  Sport sport, long currentMembers, long memberLimit, Location location,
-                  Trainer trainer, Team teamId) {
-    this.id = id;
-    this.name = name;
-    this.date = date;
-    this.time = time;
-    this.minutes = minutes;
-    this.description = description;
-    this.sport = sport;
-    this.currentMembers = currentMembers;
-    this.memberLimit = memberLimit;
-    this.location = location;
-    this.trainer = trainer;
-    this.teamId = teamId;
-  }
+    @Column(name = "sport", nullable = false)
+    private String sport;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Column(name = "currentMembers", nullable = false)
+    private Integer currentMembers;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @Column(name = "memberLimit")
+    private Integer memberLimit;
 
-  public void setDate(Date date) {
-    this.date = date;
-  }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "LocationId", nullable = false)
+    private Location location;
 
-  public void setTime(Time time) {
-    this.time = time;
-  }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "TrainerId", nullable = false)
+    private Trainer trainer;
 
-  public void setMinutes(long minutes) {
-    this.minutes = minutes;
-  }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TeamId")
+    private Team team;
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setSport(Sport sport) {
-    this.sport = sport;
-  }
-
-  public void setCurrentMembers(long currentMembers) {
-    this.currentMembers = currentMembers;
-  }
-
-  public void setMemberLimit(long memberLimit) {
-    this.memberLimit = memberLimit;
-  }
-
-  public void setLocation(Location location) {
-    this.location = location;
-  }
-
-  public void setTrainer(Trainer trainer) {
-    this.trainer = trainer;
-  }
-
-  public void setTeamId(Team teamId) {
-    this.teamId = teamId;
-  }
 }

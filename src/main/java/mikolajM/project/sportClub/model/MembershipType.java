@@ -2,60 +2,30 @@ package mikolajM.project.sportClub.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
-@Table
 public class MembershipType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private long months;
-  private double price;
-  private String description;
-  private String fullAccess;
-  private double discount;
+    @Column(name = "months", nullable = false)
+    private Byte months;
 
-  public MembershipType() {
-  }
+    @Column(name = "price", nullable = false)
+    private Double price;
 
-  public MembershipType(long id, long months, double price, String description, String fullAccess, double discount) {
-    this.id = id;
-    this.months = months;
-    this.price = price;
-    this.description = description;
-    this.fullAccess = fullAccess;
-    this.discount = discount;
-  }
+    @Column(name = "description", nullable = false)
+    private String description;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Column(name = "fullAccess", nullable = false)
+    private Boolean fullAccess = false;
 
-
-  public void setMonths(long months) {
-    this.months = months;
-  }
-
-
-  public void setPrice(double price) {
-    this.price = price;
-  }
-
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public void setFullAccess(String fullAccess) {
-    this.fullAccess = fullAccess;
-  }
-
-
-  public void setDiscount(double discount) {
-    this.discount = discount;
-  }
+    @Column(name = "discount")
+    private Double discount;
 
 }

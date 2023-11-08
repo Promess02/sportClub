@@ -1,64 +1,36 @@
 package mikolajM.project.sportClub.model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
-@Entity
-@Table
 @Getter
+@Setter
+@Entity
 public class Membership {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private Date startDate;
-  private Date endDate;
-  @ManyToOne
-  @JoinColumn(name = "memberId")
-  private Member member;
-  @OneToOne(mappedBy = "membershipTypeId")
-  private MembershipType membershipType;
+    @Column(name = "startDate", nullable = false)
+    private LocalDate startDate;
 
-  @OneToOne(mappedBy = "activityId")
-  private Activity activity;
+    @Column(name = "endDate", nullable = false)
+    private LocalDate endDate;
 
-  public Membership() {
-  }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "MemberId", nullable = false)
+    private Member member;
 
-  public Membership(long id, Date startDate, Date endDate, Member member, MembershipType membershipType, Activity activity) {
-    this.id = id;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.member = member;
-    this.membershipType = membershipType;
-    this.activity = activity;
-  }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "MembershipTypeId", nullable = false)
+    private MembershipType membershipType;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ActivityId")
+    private Activity activity;
 
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
-
-  public void setEndDate(Date endDate) {
-    this.endDate = endDate;
-  }
-
-  public void setMember(Member member) {
-    this.member = member;
-  }
-
-  public void setMembershipType(MembershipType membershipType) {
-    this.membershipType = membershipType;
-  }
-
-  public void setActivity(Activity activity) {
-    this.activity = activity;
-  }
 }

@@ -1,57 +1,34 @@
 package mikolajM.project.sportClub.model;
 
 import jakarta.persistence.*;
-import java.sql.Date;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+
+@Getter
+@Setter
 @Entity
-@Table
 public class Achievement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String name;
-  private long place;
-  private String description;
-  private Date date;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-  @ManyToOne
-  @JoinColumn(name = "teamId")
-  private Team team;
+    @Column(name = "place", nullable = false)
+    private Integer place;
 
-  public Achievement() {
-  }
+    @Column(name = "description")
+    private String description;
 
-  public Achievement(long id, String name, long place, String description, Date date, Team team) {
-    this.id = id;
-    this.name = name;
-    this.place = place;
-    this.description = description;
-    this.date = date;
-    this.team = team;
-  }
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "TeamId", nullable = false)
+    private Team team;
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setPlace(long place) {
-    this.place = place;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public void setTeam(Team team) {
-    this.team = team;
-  }
 }

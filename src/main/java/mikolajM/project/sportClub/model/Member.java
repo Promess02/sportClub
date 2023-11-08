@@ -1,62 +1,27 @@
 package mikolajM.project.sportClub.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
-import mikolajM.project.sportClub.enums.MembershipStatus;
+import lombok.Setter;
 
-import java.util.List;
-
-@Entity
-@Table
 @Getter
+@Setter
+@Entity
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MemberId", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long memberId;
-  @Enumerated(EnumType.STRING)
-  private MembershipStatus membershipStatus;
+    @Column(name = "membershipStatus", nullable = false)
+    private Boolean membershipStatus = false;
 
-  @ManyToOne
-  @JoinColumn(name = "teamId")
-  private Team team;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TeamId")
+    private Team team;
 
-  @OneToOne(mappedBy = "userId")
-  private User user;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "UserId", nullable = false)
+    private User user;
 
-  @JsonBackReference
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "member")
-  private List<Calendar> calendar;
-
-  public Member() {
-  }
-
-  public Member(long memberId, MembershipStatus membershipStatus, Team team, User user) {
-    this.memberId = memberId;
-    this.membershipStatus = membershipStatus;
-    this.team = team;
-    this.user = user;
-  }
-
-  public void setMemberId(long memberId) {
-    this.memberId = memberId;
-  }
-
-  public void setMembershipStatus(MembershipStatus membershipStatus) {
-    this.membershipStatus = membershipStatus;
-  }
-
-  public void setTeam(Team team) {
-    this.team = team;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-  public void setCalendar(List<Calendar> calendar) {
-    this.calendar = calendar;
-  }
 }

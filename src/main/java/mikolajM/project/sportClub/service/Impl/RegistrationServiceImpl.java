@@ -1,9 +1,9 @@
 package mikolajM.project.sportClub.service.Impl;
 
+import mikolajM.project.sportClub.model.ConfirmationToken;
 import mikolajM.project.sportClub.model.User;
 import mikolajM.project.sportClub.repo.SQL.ConfirmationTokenRepository;
 import mikolajM.project.sportClub.repo.UserRepo;
-import mikolajM.project.sportClub.model.ConfirmationToken;
 import mikolajM.project.sportClub.service.EmailService;
 import mikolajM.project.sportClub.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public ResponseEntity<?> saveUser(User user) {
 
-        if (userRepository.existsByUserEmail(user.getEmail())) {
+        if (userRepository.existsByEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body("Error: Email is already in use!");
         }
 
@@ -52,7 +52,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         if(token != null)
         {
-            User user = userRepository.findByUserEmailIgnoreCase(token.getUser().getEmail());
+            User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
             userRepository.save(user);
             return ResponseEntity.ok("Email verified successfully!");
         }

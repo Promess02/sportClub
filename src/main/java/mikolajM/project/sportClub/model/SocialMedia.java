@@ -2,48 +2,28 @@ package mikolajM.project.sportClub.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
-@Table
 public class SocialMedia {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String name;
-  private String url;
-  private String iconUrl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @OneToOne(mappedBy = "LocationId")
-  private Location location;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-  public SocialMedia() {
-  }
-  public SocialMedia(long id, String name, String url, String iconUrl, Location location) {
-    this.id = id;
-    this.name = name;
-    this.url = url;
-    this.iconUrl = iconUrl;
-    this.location = location;
-  }
+    @Column(name = "URL", nullable = false)
+    private String url;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Column(name = "IconUrl", nullable = false)
+    private String iconUrl;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LocationId")
+    private Location location;
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public void setIconUrl(String iconUrl) {
-    this.iconUrl = iconUrl;
-  }
-
-  public void setLocation(Location location) {
-    this.location = location;
-  }
 }

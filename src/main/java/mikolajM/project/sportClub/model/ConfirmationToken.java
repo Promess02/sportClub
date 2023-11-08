@@ -2,54 +2,34 @@ package mikolajM.project.sportClub.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.Date;
+import java.time.Instant;
 
-@Entity
-@Table(name = "Confirmation_token")
 @Getter
+@Setter
+@Entity
+@Table(name = "ConfirmationToken")
 public class ConfirmationToken {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="token_id")
-    private Long tokenId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tokenId")
+    private Integer id;
 
-    @Column(name="confirmation_token")
+    @Column(name = "confirmationToken")
     private String confirmationToken;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    @Column(name = "createdDate")
+    private Instant createdDate;
 
-    @OneToOne(mappedBy = "userId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
     private User user;
-
-    public ConfirmationToken() {
-    }
 
     public ConfirmationToken(User user) {
         this.user = user;
     }
+    public ConfirmationToken() {
 
-    public ConfirmationToken(Long tokenId, String confirmationToken, Date createdDate, User user) {
-        this.tokenId = tokenId;
-        this.confirmationToken = confirmationToken;
-        this.createdDate = createdDate;
-        this.user = user;
-    }
-
-    public void setTokenId(Long tokenId) {
-        this.tokenId = tokenId;
-    }
-
-    public void setConfirmationToken(String confirmationToken) {
-        this.confirmationToken = confirmationToken;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

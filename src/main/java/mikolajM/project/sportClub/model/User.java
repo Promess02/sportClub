@@ -2,83 +2,37 @@ package mikolajM.project.sportClub.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
-@Table
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-  private String name;
-  private String surname;
-  private String email;
-  private String password;
-  private String phoneNumber;
-  private String profileImageUrl;
-  @OneToOne(mappedBy = "creditCardId")
-  private CreditCard creditCard;
+    @Column(name = "surname", nullable = false)
+    private String surname;
 
-  public User() {
-  }
+    @Column(name = "email", nullable = false)
+    private String email;
 
-  public User(long id, String name, String surname, String email, String password, String phoneNumber) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.email = email;
-    this.password = password;
-    this.phoneNumber = phoneNumber;
-  }
+    @Column(name = "password", nullable = false)
+    private String password;
 
-  public User(long id, String name, String surname, String email, String password, String phoneNumber, String profileImageUrl, CreditCard creditCard) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.email = email;
-    this.password = password;
-    this.phoneNumber = phoneNumber;
-    this.profileImageUrl = profileImageUrl;
-    this.creditCard = creditCard;
-  }
+    @Column(name = "phone_number", nullable = false, length = 12)
+    private String phoneNumber;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Column(name = "profile_image_URL")
+    private String profileImageUrl;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CreditCardId")
+    private CreditCard creditCard;
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public void setSurname(String surname) {
-    this.surname = surname;
-  }
-
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-
-  public void setProfileImageUrl(String profileImageUrl) {
-    this.profileImageUrl = profileImageUrl;
-  }
-
-  public void setCreditCard(CreditCard creditCard) {
-    this.creditCard = creditCard;
-  }
 }

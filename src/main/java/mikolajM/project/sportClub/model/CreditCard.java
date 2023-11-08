@@ -1,52 +1,30 @@
 package mikolajM.project.sportClub.model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-@Entity
-@Table
 @Getter
+@Setter
+@Entity
 public class CreditCard {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private long number;
-  private long cvv;
-  private Date expirationDate;
-  private String bank;
+    @Column(name = "number", nullable = false)
+    private Integer number;
 
-  public CreditCard() {
-  }
+    @Column(name = "cvv", nullable = false)
+    private Integer cvv;
 
-  public CreditCard(long id, long number, long cvv, Date expirationDate, String bank) {
-    this.id = id;
-    this.number = number;
-    this.cvv = cvv;
-    this.expirationDate = expirationDate;
-    this.bank = bank;
-  }
+    @Column(name = "expiration_date", nullable = false)
+    private LocalDate expirationDate;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Column(name = "bank")
+    private String bank;
 
-  public void setNumber(long number) {
-    this.number = number;
-  }
-
-  public void setCvv(long cvv) {
-    this.cvv = cvv;
-  }
-
-  public void setExpirationDate(Date expirationDate) {
-    this.expirationDate = expirationDate;
-  }
-
-  public void setBank(String bank) {
-    this.bank = bank;
-  }
 }

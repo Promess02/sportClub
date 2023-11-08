@@ -1,87 +1,43 @@
 package mikolajM.project.sportClub.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
-import java.sql.Time;
-import java.util.List;
+import lombok.Setter;
+
+import java.time.LocalTime;
 
 @Getter
-@Table
+@Setter
 @Entity
 public class Location {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String name;
-  private long maxCapacity;
-  private long currentCapacity;
-  private Time weekDayOpenTime;
-  private Time weekDayCloseTime;
-  private Time weekendOpenTime;
-  private Time weekendCloseTime;
-  @OneToOne(mappedBy = "addressId")
-  private Address address;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
-  @JsonBackReference
-  private List<Activity> activityList;
+    @Column(name = "maxCapacity", nullable = false)
+    private Integer maxCapacity;
 
-  public Location() {
-  }
+    @Column(name = "currentCapacity", nullable = false)
+    private Integer currentCapacity;
 
-  public Location(long id, String name, long maxCapacity, long currentCapacity, Time weekDayOpenTime, Time weekDayCloseTime,
-                  Time weekendOpenTime, Time weekendCloseTime, Address address, List<Activity> activityList) {
-    this.id = id;
-    this.name = name;
-    this.maxCapacity = maxCapacity;
-    this.currentCapacity = currentCapacity;
-    this.weekDayOpenTime = weekDayOpenTime;
-    this.weekDayCloseTime = weekDayCloseTime;
-    this.weekendOpenTime = weekendOpenTime;
-    this.weekendCloseTime = weekendCloseTime;
-    this.address = address;
-    this.activityList = activityList;
-  }
+    @Column(name = "weekDayOpenTime", nullable = false)
+    private LocalTime weekDayOpenTime;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Column(name = "weekDayCloseTime", nullable = false)
+    private LocalTime weekDayCloseTime;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @Column(name = "weekendOpenTime", nullable = false)
+    private LocalTime weekendOpenTime;
 
-  public void setMaxCapacity(long maxCapacity) {
-    this.maxCapacity = maxCapacity;
-  }
+    @Column(name = "weekendCloseTime", nullable = false)
+    private LocalTime weekendCloseTime;
 
-  public void setCurrentCapacity(long currentCapacity) {
-    this.currentCapacity = currentCapacity;
-  }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "AddressId", nullable = false)
+    private Address address;
 
-  public void setWeekDayOpenTime(Time weekDayOpenTime) {
-    this.weekDayOpenTime = weekDayOpenTime;
-  }
-
-  public void setWeekDayCloseTime(Time weekDayCloseTime) {
-    this.weekDayCloseTime = weekDayCloseTime;
-  }
-
-  public void setWeekendOpenTime(Time weekendOpenTime) {
-    this.weekendOpenTime = weekendOpenTime;
-  }
-
-  public void setWeekendCloseTime(Time weekendCloseTime) {
-    this.weekendCloseTime = weekendCloseTime;
-  }
-
-  public void setAddress(Address address) {
-    this.address = address;
-  }
-
-  public void setActivityList(List<Activity> activityList) {
-    this.activityList = activityList;
-  }
 }

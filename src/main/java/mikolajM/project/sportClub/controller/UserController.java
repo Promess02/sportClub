@@ -3,7 +3,6 @@ package mikolajM.project.sportClub.controller;
 import lombok.RequiredArgsConstructor;
 import mikolajM.project.sportClub.model.User;
 import mikolajM.project.sportClub.service.RegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

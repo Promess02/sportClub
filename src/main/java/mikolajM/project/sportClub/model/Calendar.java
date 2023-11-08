@@ -2,84 +2,46 @@ package mikolajM.project.sportClub.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-@Entity
-@Table
 @Getter
+@Setter
+@Entity
+@Table(name = "calendar")
 public class Calendar {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "entryId", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long entryId;
-  private String name;
-  private Date date;
-  private Time time;
-  private long minutes;
-  private String description;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-  @ManyToOne
-  @JoinColumn(name = "memberId")
-  private Member member;
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
-  @ManyToOne
-  @JoinColumn(name = "trainerId")
-  private Trainer trainer;
+    @Column(name = "time", nullable = false)
+    private LocalTime time;
 
-  @OneToOne(mappedBy = "activityId")
-  private Activity activity;
+    @Column(name = "minutes", nullable = false)
+    private Integer minutes;
 
-  public Calendar() {
-  }
+    @Column(name = "description")
+    private String description;
 
-  public Calendar(long entryId, String name, Date date, Time time,
-                  long minutes, String description, Member member,
-                  Trainer trainer, Activity activity) {
-    this.entryId = entryId;
-    this.name = name;
-    this.date = date;
-    this.time = time;
-    this.minutes = minutes;
-    this.description = description;
-    this.member = member;
-    this.trainer = trainer;
-    this.activity = activity;
-  }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MemberId")
+    private Member member;
 
-  public void setEntryId(long entryId) {
-    this.entryId = entryId;
-  }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TrainerId")
+    private Trainer trainer;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ActivityId")
+    private Activity activity;
 
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public void setTime(Time time) {
-    this.time = time;
-  }
-
-  public void setMinutes(long minutes) {
-    this.minutes = minutes;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setMember(Member member) {
-    this.member = member;
-  }
-
-  public void setTrainer(Trainer trainer) {
-    this.trainer = trainer;
-  }
-
-  public void setActivity(Activity activity) {
-    this.activity = activity;
-  }
 }
