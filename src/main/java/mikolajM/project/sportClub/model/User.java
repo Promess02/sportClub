@@ -24,6 +24,15 @@ public class User {
   public User() {
   }
 
+  public User(long id, String name, String surname, String email, String password, String phoneNumber) {
+    this.id = id;
+    this.name = name;
+    this.surname = surname;
+    this.email = email;
+    this.password = password;
+    this.phoneNumber = phoneNumber;
+  }
+
   public User(long id, String name, String surname, String email, String password, String phoneNumber, String profileImageUrl, CreditCard creditCard) {
     this.id = id;
     this.name = name;

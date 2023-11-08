@@ -25,8 +25,10 @@ public class Activity {
   private long currentMembers;
   private long memberLimit;
 
-  @OneToOne(mappedBy = "locationId")
+ @ManyToOne
+ @JoinColumn(name = "LocationId")
   private Location location;
+
   @ManyToOne
   @JoinColumn(name = "trainerId")
   private Trainer trainer;
