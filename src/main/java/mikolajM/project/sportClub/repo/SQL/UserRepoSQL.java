@@ -10,5 +10,5 @@ public interface UserRepoSQL extends JpaRepository<User, Long>, UserRepo {
     @Override
     User findByEmailIgnoreCase(String emailId);
     @Override
-    Boolean existsByEmail(String email);
+    Boolean existsByEmailIgnoreCase(String email);
 }

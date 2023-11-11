@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CreditCardRepoSQL extends JpaRepository<CreditCard, Long>, CreditCardRepo {
+    @Override
+    boolean existsCreditCardByNumber(Long number);
 }

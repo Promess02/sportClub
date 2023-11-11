@@ -1,12 +1,13 @@
 package mikolajM.project.sportClub.service;
 
+import mikolajM.project.sportClub.DTO.ServiceResponse;
 import mikolajM.project.sportClub.model.User;
 import org.springframework.http.ResponseEntity;
 
 public interface RegistrationService {
-    ResponseEntity<?> saveUser(User user);
+    ServiceResponse<User> saveUser(User user);
 
-    ResponseEntity<?> confirmEmail(String confirmationToken);
+    ServiceResponse<User> confirmEmail(String confirmationToken);
 
 
 }
