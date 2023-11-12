@@ -1,5 +1,6 @@
 package mikolajM.project.sportClub.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,9 @@ public class Membership {
     @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
 
+    @Column(name = "membershipStatus", nullable = false)
+    private Boolean membershipStatus = false;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "MemberId", nullable = false)
     private Member member;
@@ -33,4 +37,16 @@ public class Membership {
     @JoinColumn(name = "ActivityId")
     private Activity activity;
 
+    public Membership() {
+        startDate = LocalDate.now();
+    }
+
+    public Membership(LocalDate endDate, Boolean membershipStatus, Member member, MembershipType membershipType, Activity activity) {
+        this.startDate = LocalDate.now();
+        this.endDate = endDate;
+        this.membershipStatus = membershipStatus;
+        this.member = member;
+        this.membershipType = membershipType;
+        this.activity = activity;
+    }
 }

@@ -13,8 +13,6 @@ public class Member {
     @Column(name = "MemberId", nullable = false)
     private Integer id;
 
-    @Column(name = "membershipStatus", nullable = false)
-    private Boolean membershipStatus = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TeamId")
@@ -24,4 +22,11 @@ public class Member {
     @JoinColumn(name = "UserId", nullable = false)
     private User user;
 
+    public Member(User user) {
+        this.user = user;
+    }
+
+    public Member() {
+
+    }
 }
