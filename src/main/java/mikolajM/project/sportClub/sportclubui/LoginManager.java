@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 public class LoginManager {
     @Getter
     private Scene scene;
-    private ConfigurableApplicationContext context;
+    private final ConfigurableApplicationContext context;
 
     public LoginManager(ConfigurableApplicationContext context) {
         this.context = context;
