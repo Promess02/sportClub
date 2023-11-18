@@ -17,15 +17,18 @@ import org.springframework.mail.SimpleMailMessage;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 @NoArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
-    @Autowired
     private UserRepo userRepository;
-    @Autowired
     private ConfirmationTokenRepository confirmationTokenRepository;
-    @Autowired
     private EmailService emailService;
+
+    @Autowired
+    public RegistrationServiceImpl(UserRepo userRepository, ConfirmationTokenRepository confirmationTokenRepository, EmailService emailService) {
+        this.userRepository = userRepository;
+        this.confirmationTokenRepository = confirmationTokenRepository;
+        this.emailService = emailService;
+    }
 
     @Override
     public ServiceResponse<User> saveUser(User user) {

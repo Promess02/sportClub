@@ -14,19 +14,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 @NoArgsConstructor
 public class MembershipServiceImp implements MembershipService {
-    @Autowired
     private MembershipRepo membershipRepo;
-    @Autowired
     private MemberRepo memberRepo;
-    @Autowired
     private UserRepo userRepo;
-    @Autowired
     private MembershipTypeRepo membershipTypeRepo;
-    @Autowired
     private ActivityRepo activityRepo;
+
+    @Autowired
+    public MembershipServiceImp(MembershipRepo membershipRepo, MemberRepo memberRepo, UserRepo userRepo, MembershipTypeRepo membershipTypeRepo, ActivityRepo activityRepo) {
+        this.membershipRepo = membershipRepo;
+        this.memberRepo = memberRepo;
+        this.userRepo = userRepo;
+        this.membershipTypeRepo = membershipTypeRepo;
+        this.activityRepo = activityRepo;
+    }
+
     @Override
     public ServiceResponse<?> getAllMembershipTypes() {
         List<MembershipType> membershipTypeList = membershipTypeRepo.findAll();

@@ -14,13 +14,16 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Autowired
     private UserRepo userRepo;
-    @Autowired
     private CreditCardRepo creditCardRepo;
+
+    @Autowired
+    public UserServiceImpl(UserRepo userRepo, CreditCardRepo creditCardRepo) {
+        this.userRepo = userRepo;
+        this.creditCardRepo = creditCardRepo;
+    }
 
     @Override
     public ServiceResponse<User> checkIfExists(User user) {

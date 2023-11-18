@@ -10,15 +10,23 @@ import mikolajM.project.sportClub.model.User;
 import mikolajM.project.sportClub.service.Impl.ServiceMessages;
 import mikolajM.project.sportClub.service.RegistrationService;
 import mikolajM.project.sportClub.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@RequiredArgsConstructor
 public class UserController {
     private final RegistrationService registrationService;
     private final UserService userService;
+
+    @Autowired
+    public UserController(RegistrationService registrationService, UserService userService) {
+        this.registrationService = registrationService;
+        this.userService = userService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
@@ -67,7 +75,5 @@ public class UserController {
             return ResponseUtil.badRequestResponse(response.getMessage());
         return ResponseUtil.okResponse("image added successfully", "User", response.getData());
     }
-
-
 
 }
