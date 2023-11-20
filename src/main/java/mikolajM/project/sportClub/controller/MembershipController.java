@@ -53,5 +53,4 @@ public class MembershipController {
         return ResponseUtil.okResponse(response.getMessage(),"Memberships", response.getData());
     }
 
-
 }
