@@ -1,4 +1,4 @@
-package mikolajM.project.sportClub.sportclubui;
+package com.mikolajm.sportclubui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

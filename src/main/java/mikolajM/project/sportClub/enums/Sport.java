@@ -1,7 +1,7 @@
 package mikolajM.project.sportClub.enums;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Sport{
     TENNIS("Tennis"), KARATE("Karate"), JIU_JITSU("Jiu-jitsu"), BOXING("boxing"),

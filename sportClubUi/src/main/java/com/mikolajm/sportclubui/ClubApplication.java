@@ -1,4 +1,4 @@
-package mikolajM.project.sportClub;
+package com.mikolajm.sportclubui;
 
 import javafx.application.Application;
 import javafx.application.Platform;

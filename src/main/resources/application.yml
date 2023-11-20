@@ -1,6 +1,4 @@
 spring:
-  main:
-    web-application-type: none
   config:
     import: external_config.yml
   jpa:

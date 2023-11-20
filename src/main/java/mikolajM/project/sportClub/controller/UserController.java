@@ -1,6 +1,5 @@
 package mikolajM.project.sportClub.controller;
 
-import lombok.RequiredArgsConstructor;
 import mikolajM.project.sportClub.DTO.CreditCardForm;
 import mikolajM.project.sportClub.DTO.PasswordForm;
 import mikolajM.project.sportClub.DTO.ProfileImageForm;
@@ -11,9 +10,7 @@ import mikolajM.project.sportClub.service.Impl.ServiceMessages;
 import mikolajM.project.sportClub.service.RegistrationService;
 import mikolajM.project.sportClub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

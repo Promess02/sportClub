@@ -1,23 +1,12 @@
-package mikolajM.project.sportClub.sportclubui;
+package com.mikolajm.sportclubui;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import lombok.Getter;
-import mikolajM.project.sportClub.controller.UserController;
-import org.apache.catalina.User;
-import org.apache.catalina.core.ApplicationContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

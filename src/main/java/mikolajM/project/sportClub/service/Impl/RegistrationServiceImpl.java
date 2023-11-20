@@ -1,6 +1,5 @@
 package mikolajM.project.sportClub.service.Impl;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import mikolajM.project.sportClub.DTO.ServiceResponse;
 import mikolajM.project.sportClub.model.ConfirmationToken;
@@ -10,9 +9,8 @@ import mikolajM.project.sportClub.repo.UserRepo;
 import mikolajM.project.sportClub.service.EmailService;
 import mikolajM.project.sportClub.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 

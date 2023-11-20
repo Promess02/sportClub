@@ -1,8 +1,9 @@
-package mikolajM.project.sportClub.sportclubui;
+package com.mikolajm.sportclubui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import lombok.extern.slf4j.Slf4j;
 import mikolajM.project.sportClub.controller.UserController;
 import mikolajM.project.sportClub.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 /** Controls the login screen */
 
 @Component
+@Slf4j
 public class LoginController{
     @FXML private TextField user;
     @FXML private TextField password;
@@ -21,7 +23,10 @@ public class LoginController{
         loginButton.setOnAction(event -> {
             String sessionID = authorize();
             if (sessionID != null) {
-                authorize();
+                String session = authorize();
+                if(session!=null)
+                log.info("session id:" + session);
+                else log.info("authentication failed");
             }
         });
     }

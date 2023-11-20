@@ -1,6 +1,5 @@
 package mikolajM.project.sportClub.service.Impl;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import mikolajM.project.sportClub.DTO.ServiceResponse;
 import mikolajM.project.sportClub.model.CreditCard;

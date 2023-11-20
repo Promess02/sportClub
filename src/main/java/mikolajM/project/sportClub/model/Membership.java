@@ -1,6 +1,5 @@
 package mikolajM.project.sportClub.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
