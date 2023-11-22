@@ -1,4 +1,4 @@
-package com.mikolajm.sportclubui;
+package mikolajm.project.sportclubui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/** Manages control flow for logins */
+/**
+ * Manages control flow for logins
+ */
 
 
 public class LoginManager {
@@ -40,17 +42,13 @@ public class LoginManager {
     }
 
     public void showLoginScreen() {
-       try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
-//           loader.setController(new LoginController(context.getBean(UserController.class)));
-//           scene.setRoot(loader.load());
-           loader.setControllerFactory(context::getBean);
-           scene.setRoot(loader.load());
-//            LoginController controller = loader.getController();
-//            controller.initialize(this);
-       } catch (IOException ex) {
-           Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, ex);
-      }
+            loader.setControllerFactory(context::getBean);
+            scene.setRoot(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void showMainView(String sessionID) {

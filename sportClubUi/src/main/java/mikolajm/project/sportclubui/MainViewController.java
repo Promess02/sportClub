@@ -1,15 +1,20 @@
-package com.mikolajm.sportclubui;
+package mikolajm.project.sportclubui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-/** Controls the main application screen */
+/**
+ * Controls the main application screen
+ */
 public class MainViewController {
-    @FXML private Button logoutButton;
-    @FXML private Label sessionLabel;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Label sessionLabel;
 
-    public void initialize() {}
+    public void initialize() {
+    }
 
     public void initSessionID(final LoginManager loginManager, String sessionID) {
         sessionLabel.setText(sessionID);

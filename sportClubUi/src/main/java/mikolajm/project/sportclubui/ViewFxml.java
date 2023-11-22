@@ -1,4 +1,4 @@
-package com.mikolajm.sportclubui;
+package mikolajm.project.sportclubui;
 
 public enum ViewFxml {
     LOGIN("login.fml"),
