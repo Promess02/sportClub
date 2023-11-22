@@ -11,11 +11,16 @@
 	<groupId>mikolajM.project</groupId>
 	<artifactId>sportClub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>sportClub</name>
 	<description>demo project of a sportclub system</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+	<modules>
+		<module>sportClubUi</module>
+		<module>backendApp</module>
+	</modules>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -30,6 +35,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
